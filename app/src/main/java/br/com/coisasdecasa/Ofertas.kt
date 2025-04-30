@@ -1,21 +1,14 @@
-package com.example.coisasdecasa
+package br.com.coisasdecasa
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Build
-import android.os.Bundle
-import android.os.Message
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -27,51 +20,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.viewinterop.AndroidView
-import com.example.coisasdecasa.ui.theme.CoisasDeCasaTheme
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.core.view.ViewCompat.setLayerType
-import android.view.View
-
-class MainActivity : ComponentActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            CoisasDeCasaTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WebViewScreen(
-                        url = "https://coisaasdecasa.com.br/",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }
-}
+import androidx.compose.ui.viewinterop.AndroidView
 
 @Composable
-fun WebViewScreen(url: String, modifier: Modifier) {
+fun Ofertas(url: String) {
     val context = LocalContext.current
     var isLoading by remember { mutableStateOf(true) }
     var progress by remember { mutableStateOf(0) }
 
-    val webView = remember { createWebView(context, url, onProgressChanged = { newProgress ->
-        progress = newProgress
-        isLoading = newProgress < 100
-    }) }
+    val webView = remember {
+        createWebView(context, url, onProgressChanged = { newProgress ->
+            progress = newProgress
+            isLoading = newProgress < 100
+        })
+    }
 
     WebViewContent(webView, isLoading, progress)
 
@@ -114,7 +86,11 @@ private fun HandleBackButton(webView: WebView) {
     }
 }
 
-private fun createWebView(context: Context, url: String, onProgressChanged: (Int) -> Unit): WebView {
+private fun createWebView(
+    context: Context,
+    url: String,
+    onProgressChanged: (Int) -> Unit
+): WebView {
     return WebView(context).apply {
         configureSettings(context)
         configureClients(onProgressChanged)
@@ -146,7 +122,10 @@ private fun WebView.configureClients(onProgressChanged: (Int) -> Unit) {
     }
 
     webViewClient = object : WebViewClient() {
-        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest): Boolean {
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest
+        ): Boolean {
             return false // Permitir que o WebView navegue normalmente
         }
     }

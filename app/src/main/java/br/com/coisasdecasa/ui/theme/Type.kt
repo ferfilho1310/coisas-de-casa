@@ -1,4 +1,4 @@
-package com.example.coisasdecasa.ui.theme
+package br.com.coisasdecasa.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.example.coisasdecasa
+package br.com.coisasdecasa
 
 import org.junit.Test
 

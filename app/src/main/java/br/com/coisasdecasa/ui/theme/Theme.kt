@@ -1,6 +1,5 @@
-package com.example.coisasdecasa.ui.theme
+package br.com.coisasdecasa.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
