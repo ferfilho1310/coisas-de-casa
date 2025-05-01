@@ -30,7 +30,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.coisasdecasa.R
 import br.com.coisasdecasa.ui.theme.CoisasDeCasaTheme
 
 class Onboarding : ComponentActivity() {

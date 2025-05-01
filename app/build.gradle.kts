@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.coisasdecasa"
+    namespace = "br.com.coisasdecasa"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.coisasdecasa"
+        applicationId = "br.com.coisasdecasa"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
