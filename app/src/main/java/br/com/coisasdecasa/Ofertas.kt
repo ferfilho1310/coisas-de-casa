@@ -1,6 +1,8 @@
 package br.com.coisasdecasa
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.webkit.WebChromeClient
@@ -126,7 +128,31 @@ private fun WebView.configureClients(onProgressChanged: (Int) -> Unit) {
             view: WebView?,
             request: WebResourceRequest
         ): Boolean {
-            return false // Permitir que o WebView navegue normalmente
+            val url = request.url.toString()
+
+            val externalSchemes = listOf("whatsapp:", "mailto:", "tel:", "intent:", "market:", "tg:", "geo:")
+
+            if (externalSchemes.any { url.startsWith(it) }) {
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    context.startActivity(intent)
+                    return true
+                } catch (e: Exception) {
+                    return true
+                }
+            }
+
+            if (url.contains("instagram.com") || url.contains("youtube.com") || url.contains("shopee")) {
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    context.startActivity(intent)
+                    return true
+                } catch (e: Exception) {
+                    return false
+                }
+            }
+
+            return false
         }
     }
 }

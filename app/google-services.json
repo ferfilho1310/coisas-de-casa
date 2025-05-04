@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002836596042",
+    "project_id": "coisas-de-casa-fa382",
+    "storage_bucket": "coisas-de-casa-fa382.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002836596042:android:f584f43642ea0db108ddb3",
+        "android_client_info": {
+          "package_name": "br.com.coisasdecasa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoiuCO2QdNbE5XSLfHIkMoW-vK0lm6ukw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
