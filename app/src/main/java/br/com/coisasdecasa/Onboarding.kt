@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -75,16 +77,18 @@ fun OnboardingScreen(navController: NavHostController, context: Context) {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .background(Color.White),
     ) {
         Column(
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxWidth()
-                .navigationBarsPadding(),
+                .navigationBarsPadding()
+                .background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.logo_fundo_branco),
+                painter = painterResource(id = R.drawable.fundo_branco),
                 contentDescription = "Imagem de Onboarding",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(200.dp)
@@ -99,7 +103,7 @@ fun OnboardingScreen(navController: NavHostController, context: Context) {
                 }
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Red
+                containerColor = Color.Green
             ),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -131,7 +135,8 @@ fun CheckNotificationPolicyAccess() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview2() {
-    CoisasDeCasaTheme {
+    val context = LocalContext.current
+    val  navController = rememberNavController()
 
-    }
+OnboardingScreen(navController, context)
 }
